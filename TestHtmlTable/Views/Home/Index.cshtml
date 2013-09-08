@@ -1,0 +1,53 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-1.8.2.js"></script>
+    <title>Index</title>
+    <style type="text/css">
+        table,td
+        {
+            border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="divHtmlTable">
+        @Html.Action("HtmlTable","Home")
+    </div>
+    
+    <script type="text/javascript">
+        function up(Sort) {
+            jQuery.ajax({
+                url: "@Url.Action("up","Home")",
+                type: "post",
+                cache: false,
+                async: false,
+                data: { Sort: Sort },
+                success:function(result) {
+                    $("div#divHtmlTable").empty().html(result);
+                }
+            });
+        }
+
+        function down(Sort) {
+            jQuery.ajax({
+                url: "@Url.Action("down","Home")",
+                type: "post",
+                cache: false,
+                async: false,
+                data: { Sort: Sort },
+                success: function (result) {
+                    $("div#divHtmlTable").empty().html(result);
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
